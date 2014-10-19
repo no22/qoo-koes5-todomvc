@@ -1,0 +1,14 @@
+{
+  "name": "qoo-koes5-todo",
+  "dependencies": {
+    "knockout": "~3.2.0",
+    "knockout-es5": "camswords/knockout-es5",
+    "qoo": "no22/qoo",
+    "qon": "no22/qon",
+    "qoo-koes5": "no22/qoo-koes5",
+    "director": "~1.2.2",
+    "todomvc-common": "~0.1.9",
+    "jquery": "~2.1.1",
+    "lodash": "~2.4.1"
+  }
+}

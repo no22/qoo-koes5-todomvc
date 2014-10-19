@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Qoo-koes5 TodoMVC</title>
+		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
+	</head>
+	<body>
+		<section id="todoapp" data-kovm="ViewModel">
+			<header id="header">
+				<h1>todos</h1>
+				<input id="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" data-bind="value: newTodo$, enterKey: addTodoHandler">
+			</header>
+			<section id="main" data-bind="visible: todos.length$$">
+				<input id="toggle-all" type="checkbox" data-bind="checked: !remaining$$, click: toggleAllHandler">
+				<ul id="todo-list" data-bind="foreach: todos.filter(filter$)">
+					<li class="todo" data-bind="css: {completed: completed$, editing: $data == $parent.editedTodo$}">
+						<div class="view">
+							<input class="toggle" type="checkbox" data-bind="checked: completed$">
+							<label data-bind="text: title$, event: { dblclick: $parent.editTodoHandler }"></label>
+							<button class="destroy" data-bind="click: $parent.removeTodoHandler"></button>
+						</div>
+						<input class="edit" type="text" data-bind="value: title$, valueUpdate: 'afterkeydown', enterKey: $parent.doneEditHandler, escapeKey: $parent.cancelEditHandler, todo-focus: $data == $parent.editedTodo$, event: {blur: $parent.cancelEditHandler}">
+					</li>
+				</ul>
+			</section>
+			<footer id="footer" data-bind="visible: todos.length$$">
+				<span id="todo-count">
+					<strong data-bind="text: remaining$$">0</strong> <span data-bind="text: getLabel(remaining$$)"></span> left
+				</span>
+				<ul id="filters">
+					<li><a href="#/all" data-bind="css: {selected: filter$ == 'all'}" v-class="selected:filter=='all'">All</a></li>
+					<li><a href="#/active" data-bind="css: {selected: filter$ == 'active'}">Active</a></li>
+					<li><a href="#/completed"  data-bind="css: {selected: filter$ == 'completed'}">Completed</a></li>
+				</ul>
+				<button id="clear-completed" data-bind="visible: !!completed$$, click: removeCompletedHandler">
+					Clear completed (<span data-bind="text: completed$$"></span>)
+				</button>
+			</footer>
+		</section>
+		<footer id="info">
+			<p>Double-click to edit a todo</p>
+			<p>Written by <a href="https://github.com/no22">Hiroyuki OHARA</a></p>
+			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<!--<script src="bower_components/todomvc-common/base.js"></script>-->
+		<script src="bower_components/director/build/director.js"></script>
+		<script src="bower_components/lodash/dist/lodash.min.js"></script>
+		<script src="bower_components/knockout/dist/knockout.js"></script>
+		<script src="bower_components/knockout-es5/dist/knockout-es5.min.js"></script>
+		<script src="bower_components/qoo/qoo.min.js"></script>
+		<script src="bower_components/qon/qon.min.js"></script>
+		<script src="bower_components/qoo-koes5/qoo-koes5.min.js"></script>
+		<script charset="utf-8">
+			var app = qon.di(this);
+		</script>
+		<script src="js/store.js"></script>
+		<script src="js/router.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>

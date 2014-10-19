@@ -1,0 +1,2 @@
+syntax: regexp
+^bower_components/.*
